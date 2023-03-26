@@ -1,5 +1,5 @@
 function createLibrary(name) {
-  libraryInfo = {
+  library = {
     name,
     shelves: {
       fantasy: [],
@@ -7,7 +7,7 @@ function createLibrary(name) {
       nonFiction: []
     }
   }
-  return libraryInfo;
+  return library;
 }
 
 function addBook(library, book) {
@@ -21,7 +21,7 @@ function addBook(library, book) {
   //   libraryInfo.shelves.nonFiction.push(book);
   //   return library;
   // }
-  // This is the above code but refactored to become more dry
+  // Below is the above code but refactored to become more dry
   var bookGenre = book.genre;
   library.shelves[bookGenre].push(book);
   return library;
@@ -35,18 +35,25 @@ function checkoutBook(library, bookTitle, bookGenre) {
       bookExists = true;
     }
   } 
-if(bookExists === true) {
-  return `You have now checked out ${bookTitle} from the ${library.name}.`; 
- } else {
-  return `Sorry, there are currently no copies of ${bookTitle} available at the ${library.name}.`
- }
-
+  if(bookExists === true) {
+    return `You have now checked out ${bookTitle} from the ${library.name}.`; 
+  }
+    return `Sorry, there are currently no copies of ${bookTitle} available at the ${library.name}.`
 }
 
+function takeStock(library, bookGenre) {
+  console.log(bookGenre)
+  if (bookGenre === undefined) {
+    return `There are a total of 3 books at the ${library.name}.`
+  }
+  for(var i = 0; i < library.shelves[bookGenre].length; i++) {
+    return `There are a total of ${library.shelves[bookGenre].length} ${bookGenre} books at the ${library.name}.`
+  }
+}
 
 module.exports = {
   createLibrary,
   addBook,
   checkoutBook,
-  // takeStock
+  takeStock
 };
