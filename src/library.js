@@ -42,7 +42,6 @@ function checkoutBook(library, bookTitle, bookGenre) {
 }
 
 function takeStock(library, bookGenre) {
-  console.log(bookGenre)
   if (bookGenre === undefined) {
     return `There are a total of 3 books at the ${library.name}.`
   }
